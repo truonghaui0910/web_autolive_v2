@@ -1,3 +1,5 @@
+import { Reveal, RevealGroup, RevealItem } from '@/Components/Landing/motion/Reveal';
+
 const features = [
     {
         title: 'Thao tác đơn giản',
@@ -36,18 +38,19 @@ const features = [
 export default function Features() {
     return (
         <section id="tinh-nang" className="container-lg py-16 sm:py-20">
-            <div className="mx-auto max-w-2xl text-center">
+            <Reveal as="div" className="mx-auto max-w-2xl text-center">
                 <p className="text-sm font-medium text-[var(--hero-glow)]">
                     Tính năng nổi bật
                 </p>
                 <h2 className="mt-3 text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">
                     Mọi thứ bạn cần cho một buổi live chuyên nghiệp
                 </h2>
-            </div>
+            </Reveal>
 
-            <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <RevealGroup as="div" className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {features.map((feature) => (
-                    <div
+                    <RevealItem
+                        as="div"
                         key={feature.title}
                         className="rounded-2xl border border-white/10 bg-[var(--card)] p-6"
                     >
@@ -62,9 +65,9 @@ export default function Features() {
                         <p className="mt-2 text-sm leading-relaxed text-[var(--muted-foreground)]">
                             {feature.description}
                         </p>
-                    </div>
+                    </RevealItem>
                 ))}
-            </div>
+            </RevealGroup>
         </section>
     );
 }

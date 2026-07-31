@@ -1,9 +1,10 @@
 import { Link } from '@inertiajs/react';
+import { Reveal } from '@/Components/Landing/motion/Reveal';
 
 export default function CtaBanner({ canRegister }) {
     return (
         <section className="container-lg pb-24">
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[var(--card)] px-8 py-16 text-center sm:px-16">
+            <Reveal as="div" className="relative overflow-hidden rounded-3xl border border-white/10 bg-[var(--card)] px-8 py-16 text-center sm:px-16">
                 <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--hero-glow)]/15 blur-3xl" />
 
                 <h2 className="text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">
@@ -21,7 +22,7 @@ export default function CtaBanner({ canRegister }) {
                         Đăng ký dùng thử miễn phí
                     </Link>
                 )}
-            </div>
+            </Reveal>
         </section>
     );
 }

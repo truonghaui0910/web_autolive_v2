@@ -1,3 +1,5 @@
+import { Reveal, RevealGroup, RevealItem } from '@/Components/Landing/motion/Reveal';
+
 const channels = [
     { name: 'Kênh Gaming Tối', platform: 'YouTube', viewers: '2.4K', tone: 'bg-[var(--hero-glow)]/25' },
     { name: 'Shop Thời Trang ABC', platform: 'TikTok', viewers: '1.1K', tone: 'bg-[var(--hero-glow)]/15' },
@@ -8,7 +10,7 @@ export default function ProductPreview() {
     return (
         <section className="container-lg py-16 sm:py-20">
             <div className="grid items-center gap-12 lg:grid-cols-2">
-                <div>
+                <Reveal as="div" direction="left">
                     <p className="text-sm font-medium text-[var(--hero-glow)]">
                         Giao diện trực quan
                     </p>
@@ -35,9 +37,9 @@ export default function ProductPreview() {
                             </li>
                         ))}
                     </ul>
-                </div>
+                </Reveal>
 
-                <div className="relative">
+                <Reveal as="div" direction="right" delay={0.1} className="relative">
                     <div className="overflow-hidden rounded-2xl border border-white/10 bg-[var(--card)]">
                         <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
                             <span className="size-2.5 rounded-full border border-white/20" />
@@ -47,9 +49,10 @@ export default function ProductPreview() {
                                 app.autolive.vip/dashboard
                             </span>
                         </div>
-                        <div className="space-y-3 p-5">
+                        <RevealGroup as="div" className="space-y-3 p-5">
                             {channels.map((channel) => (
-                                <div
+                                <RevealItem
+                                    as="div"
                                     key={channel.name}
                                     className="flex items-center justify-between rounded-xl border border-white/10 p-4"
                                 >
@@ -73,16 +76,16 @@ export default function ProductPreview() {
                                             {channel.viewers} đang xem
                                         </p>
                                     </div>
-                                </div>
+                                </RevealItem>
                             ))}
-                        </div>
+                        </RevealGroup>
                     </div>
 
                     <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-white/10 bg-[var(--card)] px-5 py-4 sm:block">
                         <p className="text-2xl font-medium text-white">99.9%</p>
                         <p className="text-xs text-white/40">Uptime máy chủ</p>
                     </div>
-                </div>
+                </Reveal>
             </div>
         </section>
     );

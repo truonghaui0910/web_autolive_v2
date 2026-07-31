@@ -1,3 +1,5 @@
+import { Reveal, RevealGroup, RevealItem } from '@/Components/Landing/motion/Reveal';
+
 const faqs = [
     {
         question: 'AutoLive là gì?',
@@ -28,18 +30,19 @@ const faqs = [
 export default function Faq() {
     return (
         <section id="faq" className="container-sm py-16 sm:py-20">
-            <div className="text-center">
+            <Reveal as="div" className="text-center">
                 <p className="text-sm font-medium text-[var(--hero-glow)]">
                     Câu hỏi thường gặp
                 </p>
                 <h2 className="mt-3 text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">
                     Giải đáp thắc mắc của bạn
                 </h2>
-            </div>
+            </Reveal>
 
-            <div className="mt-12 space-y-3">
+            <RevealGroup as="div" className="mt-12 space-y-3">
                 {faqs.map((faq) => (
-                    <details
+                    <RevealItem
+                        as="details"
                         key={faq.question}
                         className="group rounded-2xl border border-white/10 bg-[var(--card)] p-5"
                     >
@@ -52,9 +55,9 @@ export default function Faq() {
                         <p className="mt-3 text-sm leading-relaxed text-[var(--muted-foreground)]">
                             {faq.answer}
                         </p>
-                    </details>
+                    </RevealItem>
                 ))}
-            </div>
+            </RevealGroup>
         </section>
     );
 }

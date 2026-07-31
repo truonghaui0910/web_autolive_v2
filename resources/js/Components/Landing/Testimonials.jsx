@@ -1,3 +1,5 @@
+import { Reveal } from '@/Components/Landing/motion/Reveal';
+
 const rowOne = [
     {
         name: 'Nguyễn Quang Minh',
@@ -56,14 +58,14 @@ function TestimonialCard({ testimonial }) {
 export default function Testimonials() {
     return (
         <section className="overflow-hidden py-16 sm:py-20">
-            <div className="container-sm text-center">
+            <Reveal as="div" className="container-sm text-center">
                 <p className="text-sm font-medium text-[var(--hero-glow)]">
                     Khách hàng nói gì
                 </p>
                 <h2 className="mt-3 text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">
                     Được tin dùng bởi hàng nghìn nhà sáng tạo nội dung
                 </h2>
-            </div>
+            </Reveal>
 
             <div className="mt-14 space-y-4">
                 <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">

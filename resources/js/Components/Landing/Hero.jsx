@@ -1,11 +1,22 @@
 import { Link } from '@inertiajs/react';
+import { motion } from 'motion/react';
+import { fadeUp } from '@/Components/Landing/motion/Reveal';
 
 const platforms = ['YouTube', 'Facebook', 'TikTok', 'Twitch', 'Shopee Live'];
+
+const heroStagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
 
 export default function Hero({ canRegister }) {
     return (
         <section className="relative overflow-hidden pb-24 pt-[168px] sm:pt-[200px]">
-            <div className="pointer-events-none absolute left-1/2 top-24 -z-10 size-[36rem] -translate-x-1/2 sm:size-[46rem]">
+            <motion.div
+                className="pointer-events-none absolute left-1/2 top-24 -z-10 size-[36rem] -translate-x-1/2 sm:size-[46rem]"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+            >
                 <div className="absolute inset-0 rounded-full border border-white/10" />
                 <div className="absolute inset-[14%] rounded-full border border-white/10" />
                 <div className="absolute inset-[28%] rounded-full border border-white/10" />
@@ -14,25 +25,42 @@ export default function Hero({ canRegister }) {
                 <span className="absolute right-[18%] top-[35%] size-1 rounded-full bg-white/30" />
                 <span className="absolute bottom-[22%] left-[30%] size-1 rounded-full bg-white/20" />
                 <span className="absolute bottom-[15%] right-[24%] size-1.5 rounded-full bg-white/30" />
-            </div>
+            </motion.div>
 
-            <div className="container-sm relative text-center">
-                <span className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-sm text-white/70">
+            <motion.div
+                className="container-sm relative text-center"
+                initial="hidden"
+                animate="visible"
+                variants={heroStagger}
+            >
+                <motion.span
+                    variants={fadeUp}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-sm text-white/70"
+                >
                     <span className="size-1.5 animate-pulse rounded-full bg-[var(--hero-glow)]" />
                     Đang LIVE hơn 1.200 kênh mỗi ngày
-                </span>
+                </motion.span>
 
-                <h1 className="mx-auto mt-6 max-w-3xl text-[40px] font-medium leading-[1.1] tracking-tight text-white sm:text-[56px] lg:text-[72px] lg:leading-[80px]">
+                <motion.h1
+                    variants={fadeUp}
+                    className="mx-auto mt-6 max-w-3xl text-[40px] font-medium leading-[1.1] tracking-tight text-white sm:text-[56px] lg:text-[72px] lg:leading-[80px]"
+                >
                     Livestream tự động trên nhiều nền tảng, liên tục 24/7
-                </h1>
+                </motion.h1>
 
-                <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--muted-foreground)]">
+                <motion.p
+                    variants={fadeUp}
+                    className="mx-auto mt-6 max-w-2xl text-lg text-[var(--muted-foreground)]"
+                >
                     Không cần máy tính bật liên tục, không cần thuê VPS. AutoLive
                     giúp bạn phát trực tiếp đồng thời trên YouTube, Facebook,
                     TikTok, Twitch và Shopee Live chỉ với vài thao tác đơn giản.
-                </p>
+                </motion.p>
 
-                <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <motion.div
+                    variants={fadeUp}
+                    className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+                >
                     {canRegister && (
                         <Link
                             href={route('register')}
@@ -47,9 +75,12 @@ export default function Hero({ canRegister }) {
                     >
                         Xem tính năng
                     </a>
-                </div>
+                </motion.div>
 
-                <div className="mx-auto mt-20 flex max-w-3xl flex-wrap items-center justify-center gap-x-10 gap-y-4">
+                <motion.div
+                    variants={fadeUp}
+                    className="mx-auto mt-20 flex max-w-3xl flex-wrap items-center justify-center gap-x-10 gap-y-4"
+                >
                     {platforms.map((platform) => (
                         <span
                             key={platform}
@@ -58,8 +89,8 @@ export default function Hero({ canRegister }) {
                             {platform}
                         </span>
                     ))}
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </section>
     );
 }
