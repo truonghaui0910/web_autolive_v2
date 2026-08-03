@@ -1,9 +1,12 @@
-export function GlowBorder({ className = '', contentClassName = '', children }) {
+import { BorderBeam } from '@/Components/Landing/motion/BorderBeam';
+
+export function GlowBorder({ className = '', contentClassName = '', beam = false, children }) {
     return (
         <div className={`relative rounded-2xl ${className}`}>
             <div
                 className={`relative z-10 h-full overflow-hidden rounded-2xl border border-white/10 bg-[var(--card)] backdrop-blur-xl ${contentClassName}`}
             >
+                {beam && <BorderBeam />}
                 {children}
             </div>
 

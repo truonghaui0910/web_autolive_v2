@@ -227,6 +227,7 @@ export default function Pricing({ canRegister }) {
                         <GlowBorder
                             className="flex flex-1 flex-col"
                             contentClassName="flex flex-1 flex-col p-8"
+                            beam={active === 'livestream'}
                         >
                             {current.type === 'tiered' ? (
                                 <TieredPlanCard plan={plan} canRegister={canRegister} />
