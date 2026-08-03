@@ -63,15 +63,17 @@ function useViewportScale() {
 
 const PLATFORMS = [
     { name: 'YouTube', icon: 'youtube' },
-    { name: 'Facebook', icon: 'facebook' },
     { name: 'TikTok', icon: 'tiktok' },
     { name: 'Instagram', icon: 'instagram' },
     { name: 'Twitch', icon: 'twitch' },
     { name: 'Zalo', icon: 'zalo' },
-    { name: 'Shopee Live', icon: 'shopee', sizeMultiplier: 2 },
+    { name: 'Facebook', icon: 'facebook' },
+    { name: 'Facebook', icon: 'facebook' },
 ];
 
-function PlatformIcon({ icon, className = 'size-4' }) {
+const ICON_SIZE = { width: '9rem', height: '9rem' };
+
+function PlatformIcon({ icon, style }) {
     const common = {
         viewBox: '0 0 24 24',
         fill: 'none',
@@ -79,7 +81,7 @@ function PlatformIcon({ icon, className = 'size-4' }) {
         strokeWidth: 1.6,
         strokeLinecap: 'round',
         strokeLinejoin: 'round',
-        className,
+        style,
     };
 
     switch (icon) {
@@ -138,22 +140,22 @@ function PlatformIcon({ icon, className = 'size-4' }) {
     }
 }
 
-function OrbitPlatform({ name, icon, index, sizeMultiplier = 1, viewportScale, sharedProgress }) {
+function OrbitPlatform({ name, icon, index, viewportScale, sharedProgress }) {
     const x = useTransform(sharedProgress, (v) => catmullRom1D(X_KEYFRAMES, logoSplineT(v, index)));
     const y = useTransform(sharedProgress, (v) => catmullRom1D(Y_KEYFRAMES, logoSplineT(v, index)));
     const scale = useTransform(sharedProgress, (v) => catmullRom1D(SCALE_KEYFRAMES, logoSplineT(v, index)));
     const opacity = useTransform(sharedProgress, (v) => catmullRom1D(OPACITY_KEYFRAMES, logoSplineT(v, index)));
 
-    const size = 104 * viewportScale * sizeMultiplier;
+    const size = 104 * 1.5 * viewportScale;
 
     return (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <motion.div
                 style={{ x, y, scale, opacity, width: size, height: size }}
-                className="glass flex items-center justify-center rounded-2xl text-[var(--hero-glow)]"
+                className="glass flex items-center justify-center overflow-hidden rounded-2xl text-white shadow-[0_0_55px_rgba(124,92,255,0.75)]"
                 title={name}
             >
-                <PlatformIcon icon={icon} className="size-8" />
+                <PlatformIcon icon={icon} style={ICON_SIZE} />
             </motion.div>
         </div>
     );
@@ -183,15 +185,16 @@ function HeadlineWord({ text, threshold, serif, sharedProgress }) {
     );
 }
 
-const HEADLINE_WORDS = [
+const HEADLINE_LINE_1 = [
     { text: 'Được', threshold: 0 },
-    { text: 'hàng nghìn', threshold: 0.05 },
-    { text: 'nhà sáng tạo', threshold: 0.1 },
-    { text: 'tin dùng', threshold: 0.16 },
-    { text: 'để', threshold: 0.23 },
-    { text: 'livestream', threshold: 0.3, serif: true },
-    { text: 'đa nền tảng', threshold: 0.36 },
-    { text: 'mỗi ngày.', threshold: 0.42, serif: true },
+    { text: 'hàng nghìn', threshold: 0.06 },
+    { text: 'nhà sáng tạo', threshold: 0.12 },
+];
+
+const HEADLINE_LINE_2 = [
+    { text: 'tin dùng để', threshold: 0.19 },
+    { text: 'livestream', threshold: 0.26, serif: true },
+    { text: 'mỗi ngày.', threshold: 0.33, serif: true },
 ];
 
 const CHAPTER_CLOSE_START = 0.62;
@@ -222,11 +225,10 @@ export default function PlatformOrbit() {
                 <div aria-hidden="true">
                     {PLATFORMS.map((platform, i) => (
                         <OrbitPlatform
-                            key={platform.name}
+                            key={`${platform.name}-${i}`}
                             name={platform.name}
                             icon={platform.icon}
                             index={i}
-                            sizeMultiplier={platform.sizeMultiplier}
                             viewportScale={viewportScale}
                             sharedProgress={smoothProgress}
                         />
@@ -240,16 +242,29 @@ export default function PlatformOrbit() {
                     Đối tác &amp; nền tảng
                 </Reveal>
 
-                <h2 className="container-sm relative z-10 mx-auto flex h-[calc(100%-4rem)] max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-0 text-center text-[32px] font-medium leading-[1.2] tracking-tight text-white sm:text-[44px]">
-                    {HEADLINE_WORDS.map((word) => (
-                        <HeadlineWord
-                            key={word.text}
-                            text={word.text}
-                            threshold={word.threshold}
-                            serif={word.serif}
-                            sharedProgress={smoothProgress}
-                        />
-                    ))}
+                <h2 className="relative z-10 mx-auto flex h-[calc(100%-4rem)] max-w-md flex-col items-center justify-center gap-y-1 px-6 text-center text-[28px] font-medium leading-[1.15] tracking-tight text-white/80 sm:max-w-lg sm:text-[38px]">
+                    <span className="flex flex-wrap items-center justify-center gap-x-2">
+                        {HEADLINE_LINE_1.map((word) => (
+                            <HeadlineWord
+                                key={word.text}
+                                text={word.text}
+                                threshold={word.threshold}
+                                serif={word.serif}
+                                sharedProgress={smoothProgress}
+                            />
+                        ))}
+                    </span>
+                    <span className="flex flex-wrap items-center justify-center gap-x-2">
+                        {HEADLINE_LINE_2.map((word) => (
+                            <HeadlineWord
+                                key={word.text}
+                                text={word.text}
+                                threshold={word.threshold}
+                                serif={word.serif}
+                                sharedProgress={smoothProgress}
+                            />
+                        ))}
+                    </span>
                 </h2>
             </motion.div>
         </div>
