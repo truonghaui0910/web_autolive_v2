@@ -38,7 +38,7 @@ const rowTwo = [
 
 function TestimonialCard({ testimonial }) {
     return (
-        <figure className="w-[360px] shrink-0 rounded-2xl border border-white/10 bg-[var(--card)] p-6 backdrop-blur-xl">
+        <figure className="glass w-[360px] shrink-0 rounded-2xl p-6">
             <blockquote className="text-sm leading-relaxed text-white/80">
                 “{testimonial.quote}”
             </blockquote>

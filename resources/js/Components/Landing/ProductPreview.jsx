@@ -40,7 +40,7 @@ export default function ProductPreview() {
                 </Reveal>
 
                 <Reveal as="div" direction="right" delay={0.1} className="relative">
-                    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[var(--card)] backdrop-blur-xl">
+                    <div className="glass overflow-hidden rounded-2xl">
                         <div className="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
                             <span className="size-2.5 rounded-full border border-white/20" />
                             <span className="size-2.5 rounded-full border border-white/20" />
@@ -54,7 +54,7 @@ export default function ProductPreview() {
                                 <RevealItem
                                     as="div"
                                     key={channel.name}
-                                    className="flex items-center justify-between rounded-xl border border-white/10 p-4"
+                                    className="glass-soft flex items-center justify-between rounded-xl p-4"
                                 >
                                     <div className="flex items-center gap-3">
                                         <span className={`size-9 rounded-lg border border-white/10 ${channel.tone}`} />
@@ -81,7 +81,7 @@ export default function ProductPreview() {
                         </RevealGroup>
                     </div>
 
-                    <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-white/10 bg-[var(--card)] px-5 py-4 backdrop-blur-xl sm:block">
+                    <div className="glass absolute -bottom-6 -left-6 hidden rounded-2xl px-5 py-4 sm:block">
                         <p className="text-2xl font-medium text-white">99.9%</p>
                         <p className="text-xs text-white/40">Uptime máy chủ</p>
                     </div>

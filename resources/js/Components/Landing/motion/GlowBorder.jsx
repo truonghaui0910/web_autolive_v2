@@ -4,7 +4,7 @@ export function GlowBorder({ className = '', contentClassName = '', beam = false
     return (
         <div className={`relative rounded-2xl ${className}`}>
             <div
-                className={`relative z-10 h-full overflow-hidden rounded-2xl border border-white/10 bg-[var(--card)] backdrop-blur-xl ${contentClassName}`}
+                className={`glass relative z-10 h-full overflow-hidden rounded-2xl ${contentClassName}`}
             >
                 {beam && <BorderBeam delay={beamDelay} />}
                 {children}
