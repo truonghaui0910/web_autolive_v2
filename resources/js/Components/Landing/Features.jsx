@@ -52,7 +52,7 @@ export default function Features() {
                     <RevealItem
                         as="div"
                         key={feature.title}
-                        className="rounded-2xl border border-white/10 bg-[var(--card)] p-6"
+                        className="rounded-2xl border border-white/10 bg-[var(--card)] p-6 backdrop-blur-xl"
                     >
                         <div className="inline-flex size-10 items-center justify-center rounded-lg border border-white/10 text-[var(--hero-glow)]">
                             <svg className="size-5" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">

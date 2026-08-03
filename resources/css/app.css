@@ -10,8 +10,8 @@
 .landing {
     --background: #030014;
     --foreground: #ffffff;
-    --card: #0a0518;
-    --popover: #0a0518;
+    --card: rgba(18, 10, 38, 0.55);
+    --popover: rgba(18, 10, 38, 0.55);
     --primary: #f4f0ff;
     --primary-foreground: #030014;
     --secondary: #150a2e;

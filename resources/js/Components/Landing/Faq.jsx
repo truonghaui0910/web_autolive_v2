@@ -44,7 +44,7 @@ export default function Faq() {
                     <RevealItem
                         as="details"
                         key={faq.question}
-                        className="group rounded-2xl border border-white/10 bg-[var(--card)] p-5"
+                        className="group rounded-2xl border border-white/10 bg-[var(--card)] p-5 backdrop-blur-xl"
                     >
                         <summary className="flex cursor-pointer list-none items-center justify-between text-left text-base font-semibold text-white">
                             {faq.question}
