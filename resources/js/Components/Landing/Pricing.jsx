@@ -79,32 +79,39 @@ function CheckIcon() {
 
 function Feature({ children }) {
     return (
-        <li className="flex flex-wrap items-start gap-2 text-sm text-white/70">
+        <RevealItem
+            as="li"
+            direction="left"
+            duration={0.45}
+            className="flex flex-wrap items-start gap-2 text-sm text-white/70"
+        >
             <CheckIcon />
             <span>{children}</span>
-        </li>
+        </RevealItem>
     );
 }
 
 function TieredPlanCard({ plan, canRegister }) {
     return (
-        <>
-            <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
+        <RevealGroup as="div" stagger={0.06} className="flex flex-1 flex-col">
+            <RevealItem as="h3" direction="left" duration={0.45} className="text-lg font-semibold text-white">
+                {plan.name}
+            </RevealItem>
 
-            <div className="mt-4 h-5 text-sm text-red-400/80">
+            <RevealItem as="div" direction="left" duration={0.45} className="mt-4 h-5 text-sm text-red-400/80">
                 {plan.originalPrice ? (
                     <span className="line-through">{plan.originalPrice}đ</span>
                 ) : (
                     <span>-</span>
                 )}
-            </div>
+            </RevealItem>
 
-            <p className="leading-none">
+            <RevealItem as="p" direction="left" duration={0.45} className="leading-none">
                 <span className="text-[32px] font-medium text-white sm:text-[36px]">
                     {plan.price}đ
                 </span>
                 <span className="text-[var(--muted-foreground)]"> / tháng</span>
-            </p>
+            </RevealItem>
 
             <ul className="mt-6 flex-1 space-y-3">
                 <Feature>
@@ -134,30 +141,39 @@ function TieredPlanCard({ plan, canRegister }) {
             </ul>
 
             {canRegister && (
-                <Link
-                    href={route('register')}
-                    className="mt-8 block rounded-lg border border-white/20 bg-gradient-to-b from-[var(--accent-purple)]/0 to-[var(--accent-purple)]/40 py-2.5 text-center text-sm font-medium text-[#f4f0ff] transition hover:to-[var(--accent-purple)]/60"
-                >
-                    Dùng thử ngay
-                </Link>
+                <RevealItem as="div" direction="left" duration={0.45} className="mt-8">
+                    <Link
+                        href={route('register')}
+                        className="block rounded-lg border border-white/20 bg-gradient-to-b from-[var(--accent-purple)]/0 to-[var(--accent-purple)]/40 py-2.5 text-center text-sm font-medium text-[#f4f0ff] transition hover:to-[var(--accent-purple)]/60"
+                    >
+                        Dùng thử ngay
+                    </Link>
+                </RevealItem>
             )}
-        </>
+        </RevealGroup>
     );
 }
 
 function SimplePlanCard({ plan, canRegister }) {
     return (
-        <>
+        <RevealGroup as="div" stagger={0.06} className="flex flex-1 flex-col">
             {plan.highlight && (
-                <span className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/20 bg-gradient-to-b from-[var(--accent-purple)]/0 to-[var(--accent-purple)]/60 px-3 py-1 text-xs font-medium text-[#f4f0ff]">
+                <RevealItem
+                    as="span"
+                    direction="left"
+                    duration={0.45}
+                    className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/20 bg-gradient-to-b from-[var(--accent-purple)]/0 to-[var(--accent-purple)]/60 px-3 py-1 text-xs font-medium text-[#f4f0ff]"
+                >
                     Phổ biến nhất
-                </span>
+                </RevealItem>
             )}
-            <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
-            <p className="mt-4 leading-none">
+            <RevealItem as="h3" direction="left" duration={0.45} className="text-lg font-semibold text-white">
+                {plan.name}
+            </RevealItem>
+            <RevealItem as="p" direction="left" duration={0.45} className="mt-4 leading-none">
                 <span className="text-[56px] font-medium text-white">{plan.price}đ</span>
                 <span className="text-[var(--muted-foreground)]"> / tháng</span>
-            </p>
+            </RevealItem>
 
             <ul className="mt-6 flex-1 space-y-3">
                 {plan.features.map((feature) => (
@@ -166,18 +182,20 @@ function SimplePlanCard({ plan, canRegister }) {
             </ul>
 
             {canRegister && (
-                <Link
-                    href={route('register')}
-                    className={`mt-8 block rounded-lg border py-2.5 text-center text-sm font-medium transition ${
-                        plan.highlight
-                            ? 'border-white/20 bg-gradient-to-b from-[var(--accent-purple)]/0 to-[var(--accent-purple)]/40 text-[#f4f0ff] hover:to-[var(--accent-purple)]/60'
-                            : 'border-white/15 text-white hover:border-white/25'
-                    }`}
-                >
-                    Dùng thử ngay
-                </Link>
+                <RevealItem as="div" direction="left" duration={0.45} className="mt-8">
+                    <Link
+                        href={route('register')}
+                        className={`block rounded-lg border py-2.5 text-center text-sm font-medium transition ${
+                            plan.highlight
+                                ? 'border-white/20 bg-gradient-to-b from-[var(--accent-purple)]/0 to-[var(--accent-purple)]/40 text-[#f4f0ff] hover:to-[var(--accent-purple)]/60'
+                                : 'border-white/15 text-white hover:border-white/25'
+                        }`}
+                    >
+                        Dùng thử ngay
+                    </Link>
+                </RevealItem>
             )}
-        </>
+        </RevealGroup>
     );
 }
 
