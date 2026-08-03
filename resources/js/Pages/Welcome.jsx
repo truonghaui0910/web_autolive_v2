@@ -4,6 +4,7 @@ import Features from '@/Components/Landing/Features';
 import Hero from '@/Components/Landing/Hero';
 import LandingFooter from '@/Components/Landing/LandingFooter';
 import LandingNavbar from '@/Components/Landing/LandingNavbar';
+import PlatformOrbit from '@/Components/Landing/PlatformOrbit';
 import Pricing from '@/Components/Landing/Pricing';
 import ProductPreview from '@/Components/Landing/ProductPreview';
 import StatsBanner from '@/Components/Landing/StatsBanner';
@@ -25,6 +26,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
             <div className="landing min-h-screen">
                 <LandingNavbar auth={auth} canLogin={canLogin} canRegister={canRegister} />
                 <Hero canRegister={canRegister} />
+                <PlatformOrbit />
                 <Features />
                 <ProductPreview />
                 <StatsBanner />
