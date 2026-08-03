@@ -9,6 +9,7 @@ export function BorderBeam({
     colorTo = 'var(--hero-glow)',
     reverse = false,
     initialOffset = 0,
+    halo = true,
 }) {
     const beamStyle = {
         width: size,
@@ -33,17 +34,19 @@ export function BorderBeam({
     return (
         <>
             {/* soft halo — unmasked so the glow bleeds into the card content */}
-            <motion.div
-                className="absolute aspect-square rounded-full opacity-70 blur-2xl"
-                style={{
-                    ...beamStyle,
-                    background: 'radial-gradient(circle, var(--color-from) 0%, var(--color-to) 45%, transparent 72%)',
-                }}
-                initial={{ offsetDistance: `${initialOffset}%` }}
-                whileInView={animate}
-                viewport={{ once: true }}
-                transition={transition}
-            />
+            {halo && (
+                <motion.div
+                    className="absolute aspect-square rounded-full opacity-70 blur-2xl"
+                    style={{
+                        ...beamStyle,
+                        background: 'radial-gradient(circle, var(--color-from) 0%, var(--color-to) 45%, transparent 72%)',
+                    }}
+                    initial={{ offsetDistance: `${initialOffset}%` }}
+                    whileInView={animate}
+                    viewport={{ once: true }}
+                    transition={transition}
+                />
+            )}
 
             {/* crisp beam — clipped tightly to the border ring */}
             <div className="absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]">
