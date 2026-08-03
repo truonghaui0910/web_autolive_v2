@@ -32,13 +32,12 @@ export const fadeUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 };
 
-const staggerContainer = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } },
-};
-
-export function RevealGroup({ as = 'div', className, children, ...props }) {
+export function RevealGroup({ as = 'div', stagger = 0.12, className, children, ...props }) {
     const MotionTag = motion[as] ?? motion.div;
+    const staggerContainer = {
+        hidden: {},
+        visible: { transition: { staggerChildren: stagger } },
+    };
 
     return (
         <MotionTag
@@ -54,11 +53,16 @@ export function RevealGroup({ as = 'div', className, children, ...props }) {
     );
 }
 
-export function RevealItem({ as = 'div', className, children, ...props }) {
+export function RevealItem({ as = 'div', direction = 'up', duration = 0.6, className, children, ...props }) {
     const MotionTag = motion[as] ?? motion.div;
+    const offset = offsets[direction] ?? offsets.up;
+    const variants = {
+        hidden: { opacity: 0, ...offset },
+        visible: { opacity: 1, x: 0, y: 0, transition: { duration, ease: EASE } },
+    };
 
     return (
-        <MotionTag variants={fadeUp} className={className} {...props}>
+        <MotionTag variants={variants} className={className} {...props}>
             {children}
         </MotionTag>
     );

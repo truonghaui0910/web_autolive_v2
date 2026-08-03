@@ -1,12 +1,12 @@
 import { BorderBeam } from '@/Components/Landing/motion/BorderBeam';
 
-export function GlowBorder({ className = '', contentClassName = '', beam = false, children }) {
+export function GlowBorder({ className = '', contentClassName = '', beam = false, beamDelay = 0, children }) {
     return (
         <div className={`relative rounded-2xl ${className}`}>
             <div
                 className={`relative z-10 h-full overflow-hidden rounded-2xl border border-white/10 bg-[var(--card)] backdrop-blur-xl ${contentClassName}`}
             >
-                {beam && <BorderBeam />}
+                {beam && <BorderBeam delay={beamDelay} />}
                 {children}
             </div>
 

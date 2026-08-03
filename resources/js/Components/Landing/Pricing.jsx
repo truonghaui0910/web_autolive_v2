@@ -220,14 +220,22 @@ export default function Pricing({ canRegister }) {
             <RevealGroup
                 as="div"
                 key={active}
+                stagger={0.22}
                 className="mt-10 grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
             >
-                {current.plans.map((plan) => (
-                    <RevealItem as="div" key={plan.name} className="relative flex w-full max-w-xs">
+                {current.plans.map((plan, index) => (
+                    <RevealItem
+                        as="div"
+                        key={plan.name}
+                        direction="left"
+                        duration={0.8}
+                        className="relative flex w-full max-w-xs"
+                    >
                         <GlowBorder
                             className="flex flex-1 flex-col"
                             contentClassName="flex flex-1 flex-col p-8"
                             beam={active === 'livestream'}
+                            beamDelay={(index * 10) / current.plans.length}
                         >
                             {current.type === 'tiered' ? (
                                 <TieredPlanCard plan={plan} canRegister={canRegister} />
