@@ -39,7 +39,7 @@ export default function HowItWorks() {
     return (
         <section id="quy-trinh" className="container-lg py-16 sm:py-20">
             <Reveal as="div" className="mx-auto max-w-2xl text-center">
-                <p className="text-sm font-medium text-[var(--hero-glow)]">Quy trình</p>
+                <p className="text-base font-medium text-[var(--hero-glow)]">Quy trình</p>
                 <h2 className="mt-3 text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">
                     Chỉ 4 bước để lên sóng tự động
                 </h2>

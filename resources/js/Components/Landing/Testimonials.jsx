@@ -59,7 +59,7 @@ export default function Testimonials() {
     return (
         <section className="overflow-hidden py-16 sm:py-20">
             <Reveal as="div" className="container-sm text-center">
-                <p className="text-sm font-medium text-[var(--hero-glow)]">
+                <p className="text-base font-medium text-[var(--hero-glow)]">
                     Khách hàng nói gì
                 </p>
                 <h2 className="mt-3 text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">

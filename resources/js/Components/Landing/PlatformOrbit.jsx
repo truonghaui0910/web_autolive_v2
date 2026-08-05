@@ -45,9 +45,9 @@ function logoSplineT(sharedProgress, index) {
 
 function viewportScaleFor(width) {
     if (width < 640) return 0.4;
-    if (width < 1024) return 0.55;
-    if (width < 1440) return 0.7;
-    return Math.min(1.1, width / 1280);
+    if (width < 1024) return 0.5;
+    if (width < 1440) return 0.58;
+    return Math.min(0.85, width / 1600);
 }
 
 // Separate, more aggressive scale for the flight-path radius (X/Y_KEYFRAMES)
@@ -79,7 +79,7 @@ function useResponsiveScale() {
 const PLATFORMS = [
     { name: 'YouTube', icon: 'youtube' },
     { name: 'TikTok', icon: 'tiktok' },
-    { name: 'Instagram', icon: 'instagram' },
+    { name: 'Facebook', icon: 'facebook' },
     { name: 'Twitch', icon: 'twitch' },
     { name: 'TikTok', icon: 'tiktok' },
     { name: 'YouTube', icon: 'youtube' },
@@ -118,14 +118,6 @@ function PlatformIcon({ icon, style }) {
                 <svg {...common}>
                     <path d="M13 4v10.6a3.4 3.4 0 1 1-2-3.1" />
                     <path d="M13 4c.3 2 1.8 3.6 4 4" />
-                </svg>
-            );
-        case 'instagram':
-            return (
-                <svg {...common}>
-                    <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" />
-                    <circle cx="12" cy="12" r="4.2" />
-                    <circle cx="17.1" cy="6.9" r="0.6" fill="currentColor" stroke="none" />
                 </svg>
             );
         case 'twitch':
@@ -238,12 +230,12 @@ export default function PlatformOrbit() {
 
                 <Reveal
                     as="p"
-                    className="relative z-10 pt-16 text-center text-sm font-medium text-[var(--hero-glow)] sm:pt-20"
+                    className="relative z-10 pt-[96px] text-center text-base font-medium text-[var(--hero-glow)] sm:pt-[104px]"
                 >
                     Đối tác &amp; nền tảng
                 </Reveal>
 
-                <h2 className="relative z-10 mx-auto flex h-[calc(100%-4rem)] max-w-sm flex-col items-center justify-center gap-y-1 px-6 text-center text-[21px] font-medium leading-[1.2] tracking-tight text-white/80 sm:max-w-lg sm:text-[38px]">
+                <h2 className="relative z-10 mx-auto flex h-[calc(100%-6rem)] max-w-sm flex-col items-center justify-center gap-y-1 px-6 text-center text-[21px] font-medium leading-[1.2] tracking-tight text-white/80 sm:max-w-lg sm:text-[32px]">
                     <span className="flex flex-wrap items-center justify-center gap-x-2">
                         {HEADLINE_LINE_1.map((word) => (
                             <HeadlineWord

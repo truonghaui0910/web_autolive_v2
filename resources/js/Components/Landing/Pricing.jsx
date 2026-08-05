@@ -206,7 +206,7 @@ export default function Pricing({ canRegister }) {
     return (
         <section id="bang-gia" className="container-lg pb-20 pt-24 sm:pt-32">
             <Reveal as="div" className="mx-auto max-w-2xl text-center">
-                <p className="text-sm font-medium text-[var(--hero-glow)]">
+                <p className="text-base font-medium text-[var(--hero-glow)]">
                     Bảng giá
                 </p>
                 <h2 className="mt-3 text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">

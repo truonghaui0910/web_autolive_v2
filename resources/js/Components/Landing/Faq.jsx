@@ -31,7 +31,7 @@ export default function Faq() {
     return (
         <section id="faq" className="container-sm py-16 sm:py-20">
             <Reveal as="div" className="text-center">
-                <p className="text-sm font-medium text-[var(--hero-glow)]">
+                <p className="text-base font-medium text-[var(--hero-glow)]">
                     Câu hỏi thường gặp
                 </p>
                 <h2 className="mt-3 text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">

@@ -11,7 +11,7 @@ export default function ProductPreview() {
         <section className="container-lg py-16 sm:py-20">
             <div className="grid items-center gap-12 lg:grid-cols-2">
                 <Reveal as="div" direction="left">
-                    <p className="text-sm font-medium text-[var(--hero-glow)]">
+                    <p className="text-base font-medium text-[var(--hero-glow)]">
                         Giao diện trực quan
                     </p>
                     <h2 className="mt-3 text-[40px] font-medium leading-[1.15] tracking-tight text-white sm:text-[48px]">
