@@ -66,8 +66,8 @@ const PLATFORMS = [
     { name: 'TikTok', icon: 'tiktok' },
     { name: 'Instagram', icon: 'instagram' },
     { name: 'Twitch', icon: 'twitch' },
-    { name: 'Zalo', icon: 'zalo' },
-    { name: 'Facebook', icon: 'facebook' },
+    { name: 'TikTok', icon: 'tiktok' },
+    { name: 'YouTube', icon: 'youtube' },
     { name: 'Facebook', icon: 'facebook' },
 ];
 
@@ -95,8 +95,7 @@ function PlatformIcon({ icon, style }) {
         case 'facebook':
             return (
                 <svg {...common}>
-                    <circle cx="12" cy="12" r="9.5" />
-                    <path d="M14 8.5h-1.4c-1 0-1.6.55-1.6 1.6v1.9h3l-.4 3h-2.6v6" />
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                 </svg>
             );
         case 'tiktok':
@@ -119,20 +118,6 @@ function PlatformIcon({ icon, style }) {
                 <svg {...common}>
                     <path d="M4 3h16v11l-4 4h-4l-3 3v-3H4V3z" />
                     <path d="M11 7.5v4M15.5 7.5v4" />
-                </svg>
-            );
-        case 'zalo':
-            return (
-                <svg {...common}>
-                    <path d="M4.5 5.5h15a1 1 0 0 1 1 1V15a1 1 0 0 1-1 1H9.5l-4 3.5V16H4.5a1 1 0 0 1-1-1V6.5a1 1 0 0 1 1-1Z" />
-                    <path d="M8 10.2h8M8 13h5.2" />
-                </svg>
-            );
-        case 'shopee':
-            return (
-                <svg {...common}>
-                    <path d="M8 8V6a4 4 0 0 1 8 0v2" />
-                    <path d="M5.5 8h13l-1 12h-11l-1-12z" />
                 </svg>
             );
         default:

@@ -15,8 +15,8 @@ export default function LandingNavbar({ auth, canLogin, canRegister }) {
     return (
         <header className="glass-bar fixed inset-x-0 top-0 z-50 h-[88px]">
             <nav className="container-lg flex h-full items-center justify-between">
-                <Link href="/" className="flex items-center gap-2">
-                    <ApplicationLogo className="h-7 w-7 text-[var(--hero-glow)]" />
+                <Link href="/" className="flex items-center gap-3">
+                    <ApplicationLogo className="h-14 w-14 object-contain" />
                     <span className="text-lg font-semibold tracking-tight text-white">
                         Auto<span className="text-[var(--hero-glow)]">Live</span>
                     </span>
