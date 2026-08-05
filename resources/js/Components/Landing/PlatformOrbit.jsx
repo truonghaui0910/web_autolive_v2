@@ -50,10 +50,25 @@ function viewportScaleFor(width) {
     return Math.min(1.1, width / 1280);
 }
 
-function useViewportScale() {
-    const [scale, setScale] = useState(0.7);
+// Separate, more aggressive scale for the flight-path radius (X/Y_KEYFRAMES)
+// so badges stay inside the viewport on narrow screens instead of swinging
+// off past the edge — badge size alone shrinking isn't enough, since the
+// path amplitude is authored in desktop pixels relative to screen center.
+function orbitScaleFor(width) {
+    if (width < 480) return 0.4;
+    if (width < 640) return 0.52;
+    if (width < 1024) return 0.55;
+    if (width < 1440) return 0.8;
+    return Math.min(1, width / 1280);
+}
+
+function useResponsiveScale() {
+    const [scale, setScale] = useState({ iconScale: 0.7, orbitScale: 0.8 });
     useEffect(() => {
-        const update = () => setScale(viewportScaleFor(window.innerWidth));
+        const update = () => {
+            const width = window.innerWidth;
+            setScale({ iconScale: viewportScaleFor(width), orbitScale: orbitScaleFor(width) });
+        };
         update();
         window.addEventListener('resize', update);
         return () => window.removeEventListener('resize', update);
@@ -125,9 +140,9 @@ function PlatformIcon({ icon, style }) {
     }
 }
 
-function OrbitPlatform({ name, icon, index, viewportScale, sharedProgress }) {
-    const x = useTransform(sharedProgress, (v) => catmullRom1D(X_KEYFRAMES, logoSplineT(v, index)));
-    const y = useTransform(sharedProgress, (v) => catmullRom1D(Y_KEYFRAMES, logoSplineT(v, index)));
+function OrbitPlatform({ name, icon, index, viewportScale, orbitScale, sharedProgress }) {
+    const x = useTransform(sharedProgress, (v) => catmullRom1D(X_KEYFRAMES, logoSplineT(v, index)) * orbitScale);
+    const y = useTransform(sharedProgress, (v) => catmullRom1D(Y_KEYFRAMES, logoSplineT(v, index)) * orbitScale);
     const scale = useTransform(sharedProgress, (v) => catmullRom1D(SCALE_KEYFRAMES, logoSplineT(v, index)));
     const opacity = useTransform(sharedProgress, (v) => catmullRom1D(OPACITY_KEYFRAMES, logoSplineT(v, index)));
 
@@ -190,7 +205,7 @@ export default function PlatformOrbit() {
     const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] });
     const remapped = useTransform(scrollYProgress, (v) => 0.03 + 0.85 * v);
     const smoothProgress = useSpring(remapped, { stiffness: 90, damping: 22, restDelta: 0.001 });
-    const viewportScale = useViewportScale();
+    const { iconScale, orbitScale } = useResponsiveScale();
 
     const closeOpacity = useTransform(smoothProgress, [CHAPTER_CLOSE_START, CHAPTER_CLOSE_END], [1, 0]);
     const closeY = useTransform(smoothProgress, [CHAPTER_CLOSE_START, CHAPTER_CLOSE_END], [0, -40]);
@@ -214,7 +229,8 @@ export default function PlatformOrbit() {
                             name={platform.name}
                             icon={platform.icon}
                             index={i}
-                            viewportScale={viewportScale}
+                            viewportScale={iconScale}
+                            orbitScale={orbitScale}
                             sharedProgress={smoothProgress}
                         />
                     ))}
@@ -227,7 +243,7 @@ export default function PlatformOrbit() {
                     Đối tác &amp; nền tảng
                 </Reveal>
 
-                <h2 className="relative z-10 mx-auto flex h-[calc(100%-4rem)] max-w-md flex-col items-center justify-center gap-y-1 px-6 text-center text-[28px] font-medium leading-[1.15] tracking-tight text-white/80 sm:max-w-lg sm:text-[38px]">
+                <h2 className="relative z-10 mx-auto flex h-[calc(100%-4rem)] max-w-sm flex-col items-center justify-center gap-y-1 px-6 text-center text-[21px] font-medium leading-[1.2] tracking-tight text-white/80 sm:max-w-lg sm:text-[38px]">
                     <span className="flex flex-wrap items-center justify-center gap-x-2">
                         {HEADLINE_LINE_1.map((word) => (
                             <HeadlineWord

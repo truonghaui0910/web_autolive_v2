@@ -2,6 +2,7 @@ import CtaBanner from '@/Components/Landing/CtaBanner';
 import Faq from '@/Components/Landing/Faq';
 import Features from '@/Components/Landing/Features';
 import Hero from '@/Components/Landing/Hero';
+import HowItWorks from '@/Components/Landing/HowItWorks';
 import LandingFooter from '@/Components/Landing/LandingFooter';
 import LandingNavbar from '@/Components/Landing/LandingNavbar';
 import PlatformOrbit from '@/Components/Landing/PlatformOrbit';
@@ -28,6 +29,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
                 <Hero canRegister={canRegister} />
                 <PlatformOrbit />
                 <Features />
+                <HowItWorks />
                 <ProductPreview />
                 <StatsBanner />
                 <Testimonials />
