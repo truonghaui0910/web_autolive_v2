@@ -1,9 +1,9 @@
 import { Reveal, RevealGroup, RevealItem } from '@/Components/Landing/motion/Reveal';
 
 const channels = [
-    { name: 'Kênh Gaming Tối', platform: 'YouTube', viewers: '2.4K', tone: 'bg-[var(--hero-glow)]/25' },
-    { name: 'Shop Thời Trang ABC', platform: 'TikTok', viewers: '1.1K', tone: 'bg-[var(--hero-glow)]/15' },
-    { name: 'Fanpage Ẩm Thực', platform: 'Facebook', viewers: '850', tone: 'bg-[var(--hero-glow)]/10' },
+    { name: 'Kênh Gaming Tối', platform: 'YouTube', tone: 'bg-[var(--hero-glow)]/25' },
+    { name: 'Shop Thời Trang ABC', platform: 'TikTok', tone: 'bg-[var(--hero-glow)]/15' },
+    { name: 'Fanpage Ẩm Thực', platform: 'Facebook', tone: 'bg-[var(--hero-glow)]/10' },
 ];
 
 export default function ProductPreview() {
@@ -46,7 +46,7 @@ export default function ProductPreview() {
                             <span className="size-2.5 rounded-full border border-white/20" />
                             <span className="size-2.5 rounded-full border border-white/20" />
                             <span className="ml-3 text-xs text-white/40">
-                                app.autolive.vip/dashboard
+                                autolive.vip/live
                             </span>
                         </div>
                         <RevealGroup as="div" className="space-y-3 p-5">
@@ -67,23 +67,13 @@ export default function ProductPreview() {
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="text-right">
-                                        <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--hero-glow)]/30 px-2.5 py-1 text-xs font-medium text-[var(--hero-glow)]">
-                                            <span className="size-1.5 rounded-full bg-[var(--hero-glow)]" />
-                                            LIVE
-                                        </span>
-                                        <p className="mt-1 text-xs text-white/40">
-                                            {channel.viewers} đang xem
-                                        </p>
-                                    </div>
+                                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--hero-glow)]/30 px-2.5 py-1 text-xs font-medium text-[var(--hero-glow)]">
+                                        <span className="size-1.5 rounded-full bg-[var(--hero-glow)]" />
+                                        LIVE
+                                    </span>
                                 </RevealItem>
                             ))}
                         </RevealGroup>
-                    </div>
-
-                    <div className="glass absolute -bottom-6 -left-6 hidden rounded-2xl px-5 py-4 sm:block">
-                        <p className="text-2xl font-medium text-white">99.9%</p>
-                        <p className="text-xs text-white/40">Uptime máy chủ</p>
                     </div>
                 </Reveal>
             </div>

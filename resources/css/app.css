@@ -66,21 +66,13 @@
     padding-inline: 1.25rem;
 }
 
-.landing .marquee-track {
-    animation: landing-marquee 200s linear infinite;
+.landing .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.landing .marquee-track-reverse {
-    animation: landing-marquee 200s linear infinite reverse;
-}
-
-@keyframes landing-marquee {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
+.landing .no-scrollbar::-webkit-scrollbar {
+    display: none;
 }
 
 /* Glassmorphism surfaces — frosted panels floating over the ambient glow. */

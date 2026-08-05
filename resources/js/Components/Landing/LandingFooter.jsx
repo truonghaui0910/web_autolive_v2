@@ -1,11 +1,12 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
+import { Link } from '@inertiajs/react';
 
 const columns = [
     {
         title: 'Sản phẩm',
         links: [
             { label: 'Tính năng', href: '#tinh-nang' },
-            { label: 'Bảng giá', href: '#bang-gia' },
+            { label: 'Bảng giá', href: '/pricing' },
             { label: 'Câu hỏi thường gặp', href: '#faq' },
         ],
     },
@@ -20,7 +21,7 @@ const columns = [
     {
         title: 'Pháp lý',
         links: [
-            { label: 'Chính sách bảo mật', href: '#' },
+            { label: 'Chính sách bảo mật', href: '/privacy' },
             { label: 'Điều khoản sử dụng', href: '#' },
             { label: 'Phương thức thanh toán', href: '#' },
         ],
@@ -53,12 +54,21 @@ export default function LandingFooter() {
                             <ul className="mt-4 space-y-3">
                                 {column.links.map((link) => (
                                     <li key={link.label}>
-                                        <a
-                                            href={link.href}
-                                            className="text-sm text-[var(--muted-foreground)] transition hover:text-white"
-                                        >
-                                            {link.label}
-                                        </a>
+                                        {link.href.startsWith('/') ? (
+                                            <Link
+                                                href={link.href}
+                                                className="text-sm text-[var(--muted-foreground)] transition hover:text-white"
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        ) : (
+                                            <a
+                                                href={link.href}
+                                                className="text-sm text-[var(--muted-foreground)] transition hover:text-white"
+                                            >
+                                                {link.label}
+                                            </a>
+                                        )}
                                     </li>
                                 ))}
                             </ul>

@@ -1,3 +1,4 @@
+import DraggableMarquee from '@/Components/Landing/motion/DraggableMarquee';
 import { Reveal } from '@/Components/Landing/motion/Reveal';
 
 const rowOne = [
@@ -68,21 +69,20 @@ export default function Testimonials() {
             </Reveal>
 
             <div className="mt-14 space-y-4">
-                <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                    <div className="marquee-track flex shrink-0 gap-4 pr-4">
-                        {[...rowOne, ...rowOne].map((testimonial, index) => (
-                            <TestimonialCard key={index} testimonial={testimonial} />
-                        ))}
-                    </div>
-                </div>
+                <DraggableMarquee
+                    items={rowOne}
+                    renderItem={(testimonial, index) => (
+                        <TestimonialCard key={index} testimonial={testimonial} />
+                    )}
+                />
 
-                <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                    <div className="marquee-track-reverse flex shrink-0 gap-4 pr-4">
-                        {[...rowTwo, ...rowTwo].map((testimonial, index) => (
-                            <TestimonialCard key={index} testimonial={testimonial} />
-                        ))}
-                    </div>
-                </div>
+                <DraggableMarquee
+                    reverse
+                    items={rowTwo}
+                    renderItem={(testimonial, index) => (
+                        <TestimonialCard key={index} testimonial={testimonial} />
+                    )}
+                />
             </div>
         </section>
     );

@@ -11,6 +11,20 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/pricing', function () {
+    return Inertia::render('Pricing', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+})->name('pricing');
+
+Route::get('/privacy', function () {
+    return Inertia::render('Privacy', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
+})->name('privacy');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

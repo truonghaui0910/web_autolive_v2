@@ -179,14 +179,17 @@ function HeadlineWord({ text, threshold, serif, sharedProgress }) {
 
 const HEADLINE_LINE_1 = [
     { text: 'Được', threshold: 0 },
-    { text: 'hàng nghìn', threshold: 0.06 },
-    { text: 'nhà sáng tạo', threshold: 0.12 },
+    { text: 'hàng nghìn', threshold: 0.07 },
 ];
 
 const HEADLINE_LINE_2 = [
-    { text: 'tin dùng để', threshold: 0.19 },
-    { text: 'livestream', threshold: 0.26, serif: true },
-    { text: 'mỗi ngày.', threshold: 0.33, serif: true },
+    { text: 'nhà sáng tạo', threshold: 0.14 },
+    { text: 'tin dùng để', threshold: 0.21 },
+];
+
+const HEADLINE_LINE_3 = [
+    { text: 'livestream', threshold: 0.28, serif: true },
+    { text: 'mỗi ngày.', threshold: 0.35, serif: true },
 ];
 
 const CHAPTER_CLOSE_START = 0.62;
@@ -230,12 +233,12 @@ export default function PlatformOrbit() {
 
                 <Reveal
                     as="p"
-                    className="relative z-10 pt-[96px] text-center text-base font-medium text-[var(--hero-glow)] sm:pt-[104px]"
+                    className="absolute inset-x-0 top-[96px] z-10 text-center text-base font-medium text-[var(--hero-glow)] sm:top-[104px]"
                 >
                     Đối tác &amp; nền tảng
                 </Reveal>
 
-                <h2 className="relative z-10 mx-auto flex h-[calc(100%-6rem)] max-w-sm flex-col items-center justify-center gap-y-1 px-6 text-center text-[21px] font-medium leading-[1.2] tracking-tight text-white/80 sm:max-w-lg sm:text-[32px]">
+                <h2 className="relative z-10 mx-auto flex h-full max-w-sm flex-col items-center justify-center gap-y-1 px-6 text-center text-[21px] font-medium leading-[1.2] tracking-tight text-white/80 sm:max-w-lg sm:text-[32px]">
                     <span className="flex flex-wrap items-center justify-center gap-x-2">
                         {HEADLINE_LINE_1.map((word) => (
                             <HeadlineWord
@@ -249,6 +252,17 @@ export default function PlatformOrbit() {
                     </span>
                     <span className="flex flex-wrap items-center justify-center gap-x-2">
                         {HEADLINE_LINE_2.map((word) => (
+                            <HeadlineWord
+                                key={word.text}
+                                text={word.text}
+                                threshold={word.threshold}
+                                serif={word.serif}
+                                sharedProgress={smoothProgress}
+                            />
+                        ))}
+                    </span>
+                    <span className="flex flex-wrap items-center justify-center gap-x-2">
+                        {HEADLINE_LINE_3.map((word) => (
                             <HeadlineWord
                                 key={word.text}
                                 text={word.text}

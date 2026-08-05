@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const links = [
     { href: '#tinh-nang', label: 'Tính năng' },
-    { href: '#bang-gia', label: 'Bảng giá' },
+    { href: '/pricing', label: 'Bảng giá' },
     { href: '#faq', label: 'FAQ' },
     { href: '#lien-he', label: 'Liên hệ' },
 ];
@@ -23,15 +23,25 @@ export default function LandingNavbar({ auth, canLogin, canRegister }) {
                 </Link>
 
                 <div className="hidden items-center gap-8 md:flex">
-                    {links.map((link) => (
-                        <a
-                            key={link.href}
-                            href={link.href}
-                            className="text-sm text-white/70 transition hover:text-white"
-                        >
-                            {link.label}
-                        </a>
-                    ))}
+                    {links.map((link) =>
+                        link.href.startsWith('/') ? (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className="text-sm text-white/70 transition hover:text-white"
+                            >
+                                {link.label}
+                            </Link>
+                        ) : (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                className="text-sm text-white/70 transition hover:text-white"
+                            >
+                                {link.label}
+                            </a>
+                        )
+                    )}
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -81,16 +91,27 @@ export default function LandingNavbar({ auth, canLogin, canRegister }) {
             {open && (
                 <div className="border-t border-white/10 bg-[var(--background)] px-5 py-4 md:hidden">
                     <div className="flex flex-col gap-1">
-                        {links.map((link) => (
-                            <a
-                                key={link.href}
-                                href={link.href}
-                                onClick={() => setOpen(false)}
-                                className="rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5"
-                            >
-                                {link.label}
-                            </a>
-                        ))}
+                        {links.map((link) =>
+                            link.href.startsWith('/') ? (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setOpen(false)}
+                                    className="rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5"
+                                >
+                                    {link.label}
+                                </Link>
+                            ) : (
+                                <a
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setOpen(false)}
+                                    className="rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/5"
+                                >
+                                    {link.label}
+                                </a>
+                            )
+                        )}
                     </div>
                     <div className="mt-4 flex gap-2 border-t border-white/10 pt-4">
                         {auth?.user ? (
